@@ -17,9 +17,10 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
   Map getInitialState() => (newState()
     ..counter = 0
   );
-
+  
   render() {
     return Dom.div()(
+      Dom.h3()('Using over_react 1.18.1'),
       Dom.span()('Counter: ' + state.counter.toString()),
       Dom.div()(
         (Dom.button()

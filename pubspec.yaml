@@ -4,3 +4,6 @@ dependencies:
   over_react: "^1.18.1"
 transformers:
 - over_react
+- $dart2js:
+    minify: true
+    sourceMaps: true

@@ -11,7 +11,7 @@ class SSExperience extends HtmlElement {
   void attached() {
     setClientConfiguration();
 
-    ShadowRoot shadow = attachShadow({'mode': 'open'});
+  ShadowRoot shadow = attachShadow({'mode': 'open'});
     react.render(SSExperienceApp()(), shadow);
   }
 }

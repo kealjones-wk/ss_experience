@@ -20,8 +20,8 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
   
   render() {
     return Dom.div()(
-      Dom.h3()('Spreadsheets: using over_react 1.18.1'),
-      Dom.span()('Counter: ' + state.counter.toString()),
+      (Dom.h4()..style = { 'margin': 0 })('Spreadsheets: using over_react 1.18.1'),
+      Dom.p()('Counter: ' + state.counter.toString()),
       Dom.div()(
         (Dom.button()
           ..onClick = (event) => setState(newState()..counter = ++state.counter)

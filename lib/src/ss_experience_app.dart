@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:over_react/over_react.dart';
+import 'package:shell_events/shell_events.dart' show ShellPostMessageEvent;
 
 @Factory()
 UiFactory<SSExperienceAppProps> SSExperienceApp;
@@ -14,10 +17,13 @@ class SSExperienceAppState extends UiState {
 
 @Component()
 class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps, SSExperienceAppState>  {
+  InputElement _postMessageInput;
+  FormElement _postMessageForm;
+
   Map getInitialState() => (newState()
     ..counter = 0
   );
-  
+
   render() {
     return Dom.div()(
       (Dom.h4()..style = { 'margin': 0 })('Spreadsheets: using over_react 1.18.1'),
@@ -29,7 +35,41 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
         (Dom.button()
           ..onClick = (event) => setState(newState()..counter = --state.counter)
         )('Decrement')
+      ),
+      (Dom.form()
+        ..onSubmit = _handlePostMessageSubmit
+        ..ref = (ref) {
+          _postMessageForm = ref;
+        }
+      )(
+        (Dom.label()
+          ..htmlFor = 'shellMessage'
+          ..style = {
+            'display': 'block',
+            'margin': '.8rem 0 .2rem 0'
+          }
+        )('Message'),
+        (Dom.input()
+          ..type = 'text'
+          ..id = 'shellMessage'
+          ..ref = (ref) {
+            _postMessageInput = ref;
+          }
+        )(),
+        (Dom.button()
+          ..type = 'submit'
+          ..style = {
+            'margin': '0 .2rem'
+          }
+        )('Post Message')
       )
     );
+  }
+
+  _handlePostMessageSubmit(SyntheticFormEvent event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    _postMessageForm.dispatchEvent(new ShellPostMessageEvent(detail: _postMessageInput.value));
   }
 }

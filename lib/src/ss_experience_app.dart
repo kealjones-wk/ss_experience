@@ -52,6 +52,7 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
         (Dom.input()
           ..type = 'text'
           ..id = 'shellMessage'
+          ..autoComplete = false
           ..ref = (ref) {
             _postMessageInput = ref;
           }

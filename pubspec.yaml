@@ -1,6 +1,7 @@
 name: ss_experience
 dependencies:
   browser: "^0.10.0+2"
+  js: "^0.6.1"
   over_react: "^1.18.1"
 transformers:
 - over_react

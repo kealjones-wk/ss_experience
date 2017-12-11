@@ -1,6 +1,5 @@
 import 'dart:html';
 
-import 'package:js/js_util.dart';
 import 'package:over_react/over_react.dart';
 import 'package:shell_events/shell_events.dart' show ShellPostMessageEvent;
 
@@ -72,7 +71,6 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
     event.preventDefault();
     event.stopPropagation();
     
-    var eventDetail = jsify({'message': _postMessageInput.value});
-    _postMessageForm.dispatchEvent(new ShellPostMessageEvent(detail: eventDetail));
+    _postMessageForm.dispatchEvent(new ShellPostMessageEvent(detail: {'message': _postMessageInput.value}));
   }
 }

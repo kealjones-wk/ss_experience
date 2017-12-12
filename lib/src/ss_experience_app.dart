@@ -18,7 +18,6 @@ class SSExperienceAppState extends UiState {
 @Component()
 class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps, SSExperienceAppState>  {
   InputElement _postMessageInput;
-  FormElement _postMessageForm;
 
   Map getInitialState() => (newState()
     ..counter = 0
@@ -26,7 +25,7 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
 
   render() {
     return Dom.div()(
-      (Dom.h4()..style = { 'margin': 0 })('Spreadsheets: using over_react 1.18.1'),
+      (Dom.h4()..style = {'margin': 0})('Spreadsheets: using over_react 1.18.1'),
       Dom.p()('Counter: ' + state.counter.toString()),
       Dom.div()(
         (Dom.button()
@@ -38,9 +37,6 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
       ),
       (Dom.form()
         ..onSubmit = _handlePostMessageSubmit
-        ..ref = (ref) {
-          _postMessageForm = ref;
-        }
       )(
         (Dom.label()
           ..htmlFor = 'shellMessage'
@@ -71,6 +67,6 @@ class SSExperienceAppComponent extends UiStatefulComponent<SSExperienceAppProps,
     event.preventDefault();
     event.stopPropagation();
     
-    _postMessageForm.dispatchEvent(new ShellPostMessageEvent(detail: {'message': _postMessageInput.value}));
+    event.target.dispatchEvent(new ShellPostMessageEvent(_postMessageInput.value));
   }
 }

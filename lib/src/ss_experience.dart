@@ -5,13 +5,13 @@ import 'package:react/react_dom.dart' as react;
 
 import 'ss_experience_app.dart';
 
-class SSExperience extends HtmlElement {
-  SSExperience.created() : super.created() {}
-  
-  void attached() {
+class SSExperience {
+  final HtmlElement element;
+
+  SSExperience(this.element) {
     setClientConfiguration();
 
-    ShadowRoot shadow = attachShadow({'mode': 'open'});
+    ShadowRoot shadow = element.attachShadow({'mode': 'open'});
     react.render(SSExperienceApp()(), shadow);
   }
 }

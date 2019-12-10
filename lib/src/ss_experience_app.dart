@@ -27,7 +27,7 @@ class SSExperienceAppComponent extends UiStatefulComponent2<SSExperienceAppProps
 
   render() {
     return Dom.div()(
-      (Dom.h4()..style = {'margin': 0})('Spreadsheets: Using over_react 3.1.0-wip & Component2'),
+      (Dom.h4()..style = {'margin': 0})('Spreadsheets: Using over_react "^3.1.0"'),
       Dom.p()('Counter: ' + state.counter.toString()),
       Dom.div()(
         (Dom.button()
